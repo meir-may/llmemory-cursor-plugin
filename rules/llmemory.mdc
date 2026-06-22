@@ -1,0 +1,33 @@
+---
+description: Guidelines for using the LLMemory MCP tools to search and pull context from the user's imported AI chat history.
+globs:
+alwaysApply: true
+---
+
+# LLMemory MCP
+
+You have access to the LLMemory MCP server, which reads the user's local-first chat vault live from their own Google Drive. It is read-only and zero-storage — the server never keeps user data. Use it to pull prior context instead of asking the user to copy-paste.
+
+## Available tools
+
+- **list_sources** — Show which AI providers have data in the vault and how many conversations each has. Call this first to see what's available.
+- **list_recent** — List the most recently updated conversations (id, title, source, timestamps, message count). Use to discover conversation IDs to fetch. Supports a `source` filter (e.g. `codex`, `claude-code`) and a `limit` (default 20, max 100).
+- **search_chats** — Full-text search across imported conversations (ChatGPT, Claude, Codex, Claude Code). Returns matching message snippets with conversation IDs. Real user/assistant messages rank above tool output. Supports `query` (FTS5 syntax, quoted phrases ok), `limit`, `role` filter, and `source` filter.
+- **get_conversation** — Fetch one full conversation transcript by `conversation_id` (from search_chats or list_recent). Returns Markdown by default, or raw JSON with `format: "json"`.
+- **get_context_pack** — Build an agent-ready briefing (goal, recent state, files referenced, open tasks) for a conversation or a whole folder. Hand this to a new agent to resume prior work. Provide either `conversation_id` or `folder_id`.
+
+## When to use
+
+- The user references a prior chat, session, or "what we discussed before" — search_chats or list_recent instead of asking them to re-paste.
+- Starting work that continues an earlier thread — get_context_pack for a one-shot handoff briefing.
+- The user wants to reference a recent Codex or Claude Code session inside Cursor — list_recent with `source` filter, then get_conversation on the one they want.
+- Figuring out what's imported — list_sources first.
+
+## When NOT to use
+
+- Don't pull the entire vault into context. These tools are designed for targeted pulls. Prefer search_chats (scoped) or list_recent + get_conversation (one thread) over bulk dumps.
+- Don't call get_context_pack on a folder unless the user explicitly asks for a whole-folder briefing — output is bounded but large.
+
+## Auth
+
+OAuth 2.1 with Dynamic Client Registration. On first use, a browser window opens for the user to authorize LLMemory with their Google account and grant Drive access. No API keys are managed by the user. If a tool returns an auth error, ask the user to re-authorize via the MCP panel.

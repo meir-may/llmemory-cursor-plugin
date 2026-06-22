@@ -1,0 +1,29 @@
+{
+  "name": "LLMemory",
+  "version": "0.1.0",
+  "description": "Connect Cursor to your LLMemory vault — search and pull context from your ChatGPT, Claude, Codex, and Claude Code conversations without copy-pasting. Reads your vault live from your own Google Drive. Zero server-side storage, fully private.",
+  "author": {
+    "name": "LLMemory",
+    "email": "support@llmemory.xyz"
+  },
+  "homepage": "https://llmemory.xyz",
+  "repository": "https://github.com/meir-may/llmemory-cursor-plugin",
+  "license": "MIT",
+  "keywords": [
+    "llmemory",
+    "memory",
+    "context",
+    "chat-history",
+    "chatgpt",
+    "claude",
+    "codex",
+    "claude-code",
+    "vault",
+    "mcp",
+    "handoff",
+    "search"
+  ],
+  "logo": "assets/logo.svg",
+  "rules": "rules",
+  "mcpServers": "mcp.json"
+}

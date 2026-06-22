@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "llmemory": {
+      "type": "remote",
+      "url": "https://mcp.llmemory.xyz/mcp"
+    }
+  }
+}
