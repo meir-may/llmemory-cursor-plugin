@@ -1,5 +1,6 @@
 {
-  "name": "LLMemory",
+  "name": "llmemory",
+  "displayName": "LLMemory",
   "version": "0.1.0",
   "description": "Connect Cursor to your LLMemory vault — search and pull context from your ChatGPT, Claude, Codex, and Claude Code conversations without copy-pasting. Reads your vault live from your own Google Drive. Zero server-side storage, fully private.",
   "author": {
